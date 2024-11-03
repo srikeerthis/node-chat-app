@@ -1,6 +1,9 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 app = express();
+// web socket
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -22,9 +25,16 @@ app.get("/messages", (req, res) => {
 app.post("/messages", (req, res) => {
   // add message sent from browser
   messages.push(req.body);
+  io.emit("message", req.body);
   res.sendStatus(200);
 });
 
-var server = app.listen(3000, () => {
+// connection for user
+io.on("connection", (socket) => {
+  console.log("a user is connected");
+});
+
+// listen to http calls
+var server = http.listen(3000, () => {
   console.log("server listening on ", server.address().port);
 });
