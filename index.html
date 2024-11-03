@@ -24,11 +24,21 @@
     $("#send").click(() => {
       addMessages({ name: "Tim", message: "hi" });
     });
+    // function call to backend
+    getMessages();
   });
 
+  // view messages on the website
   function addMessages(message) {
     $("#messages").append(
       `<h4> ${message.name} </h4> <p> ${message.message} </p>`
     );
+  }
+  // get messages from the backend
+  function getMessages() {
+    $.get("http://localhost:3000/messages", (data) => {
+      // optimized version prevents inline callback
+      data.forEach(addMessages);
+    });
   }
 </script>
