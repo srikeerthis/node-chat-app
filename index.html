@@ -6,6 +6,8 @@
   crossorigin="anonymous"
 />
 
+<script src="/socket.io/socket.io.js"></script>
+
 <div class="container">
   <br />
   <div class="jumbotron">
@@ -26,6 +28,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+  var socket = io();
   $(() => {
     // send form data
     $("#send").click(() => {
@@ -36,6 +39,7 @@
     getMessages();
   });
 
+  socket.on("message", addMessages);
   // view messages on the website
   function addMessages(message) {
     $("#messages").append(
