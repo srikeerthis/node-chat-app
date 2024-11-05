@@ -5,31 +5,35 @@ This is a simple chat application built with Node.js, Express, and Socket.io.
 ## Features
 
 - Real-time messaging
-- Stores messages in memory
+- Stores messages in a MongoDB database
 - Serves static files
 
 ## Installation
 
 1. Clone the repository:
-   ```sh
-   git clone <repository-url>
-   ```
+    ```sh
+    git clone <repository-url>
+    ```
 2. Navigate to the project directory:
-   ```sh
-   cd node_chat_app
-   ```
+    ```sh
+    cd node_chat_app
+    ```
 3. Install the dependencies:
-   ```sh
-   npm install
-   ```
+    ```sh
+    npm install
+    ```
 
 ## Usage
 
-1. Start the server:
-   ```sh
-   node server.js
-   ```
-2. Open your browser and navigate to `http://localhost:3000`.
+1. Start the MongoDB server:
+    ```sh
+    mongod
+    ```
+2. Start the application server:
+    ```sh
+    node server.js
+    ```
+3. Open your browser and navigate to `http://localhost:3000`.
 
 ## Endpoints
 
@@ -41,11 +45,13 @@ This is a simple chat application built with Node.js, Express, and Socket.io.
 - [Express](https://www.npmjs.com/package/express)
 - [Body-Parser](https://www.npmjs.com/package/body-parser)
 - [Socket.io](https://www.npmjs.com/package/socket.io)
+- [Mongoose](https://www.npmjs.com/package/mongoose)
 - [Bootstrap](https://www.npmjs.com/package/bootstrap)
 
 ## Future Improvements
 
-- Store data in a database for persistence.
+- Add user authentication
+- Enhance the UI
 
 ## License
 
