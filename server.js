@@ -25,25 +25,33 @@ app.get("/messages", (req, res) => {
   Message.find({})
     .then((result) => {
       console.log("sent message");
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
+      res.sendStatus(500);
     });
 });
 
 // route to post messages
-app.post("/messages", (req, res) => {
-  // add message sent from browser
-  var message = new Message(req.body);
-  message
-    .save()
-    .then((result) => {
-      io.emit("message", req.body);
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      sendStatus(500);
-    });
+app.post("/messages", async (req, res) => {
+  try {
+    // add message sent from browser
+    var message = new Message(req.body);
+
+    var savedMessage = await message.save();
+
+    console.log("saved");
+
+    var censored = await Message.findOne({ message: "badword" });
+    if (censored) {
+      await Message.deleteOne({ _id: censored.id });
+    } else io.emit("message", req.body);
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(500);
+    return console.error(err);
+  }
 });
 
 // connection for user
