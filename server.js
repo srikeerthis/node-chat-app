@@ -41,8 +41,6 @@ app.post("/messages", async (req, res) => {
 
     var savedMessage = await message.save();
 
-    console.log("saved");
-
     var censored = await Message.findOne({ message: "badword" });
     if (censored) {
       await Message.deleteOne({ _id: censored.id });
