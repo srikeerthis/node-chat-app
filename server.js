@@ -33,6 +33,20 @@ app.get("/messages", (req, res) => {
     });
 });
 
+// route to get messages from specific user
+app.get("/messages/:user", (req, res) => {
+  var user = req.params.user;
+  Message.find({ name: user })
+    .then((result) => {
+      console.log("sent message");
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
 // route to post messages
 app.post("/messages", async (req, res) => {
   try {
