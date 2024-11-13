@@ -39,6 +39,7 @@ This is a simple chat application built with Node.js, Express, and Socket.io.
 
 - `GET /messages`: Retrieve all messages.
 - `POST /messages`: Post a new message.
+- `GET /messages/:user`: Retrieve messages by a specific user.
 
 ## Dependencies
 
@@ -47,6 +48,7 @@ This is a simple chat application built with Node.js, Express, and Socket.io.
 - [Socket.io](https://www.npmjs.com/package/socket.io)
 - [Mongoose](https://www.npmjs.com/package/mongoose)
 - [Bootstrap](https://www.npmjs.com/package/bootstrap)
+- [Request](https://www.npmjs.com/package/request)
 
 ## Future Improvements
 
